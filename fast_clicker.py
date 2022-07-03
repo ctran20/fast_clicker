@@ -1,9 +1,20 @@
+import re
 from pynput import mouse
 from pynput.mouse import Controller, Button
 import time
 
+def print_time(sec):
+  mins = sec//60
+  secs = sec - mins * 60
+  
+  if(sec > 60):
+    if secs % 10 == 0:
+      print(f'{mins}m {secs}s')
+  elif(secs % 5 == 0):
+    print(f'{sec}s')
+
 mouse = Controller()
-length = 120
+length = 30
 start = int(1/length)
 
 for cycle in range(length):
@@ -17,7 +28,6 @@ for cycle in range(length):
     time.sleep(0.001)
 
   # Print progress
-  if(cycle % 5 == 0):   
-    print(f'{length - cycle}s')
+  print_time(length-cycle)
   
 print('Done!')
